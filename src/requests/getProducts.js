@@ -3,12 +3,11 @@ export const getProducts = async () => {
     const resp = await fetch(url);
     const data = await resp.json();
 
-    const productsList = data.listResponse.map(product => ({
+    return data.listResponse.map(product => ({
         code: product.code,
         name: product.name,
         unitValue: product.unitValue,
         stock: product.stock,
         dateCreated: product.dateCreated
-    }))
-    return productsList;
+    }));
 }
