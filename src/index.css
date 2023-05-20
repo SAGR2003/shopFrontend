@@ -15,7 +15,8 @@ form{
 
 body,html {
   height: 100%;
-  font-family: OpenSans-Regular, sans-serif
+  font-family: OpenSans-Regular, sans-serif;
+  background-color: #E0DFD9;
 }
 
 a {
@@ -270,14 +271,16 @@ tbody tr:hover {
   height: auto;
   border-radius: 40px;
   padding: 0px 5px 0px 20px;
-  grid-column: 2/4;
+  grid-column: 4 / 6;
   grid-row: 3;
+  margin-right: 0;
+  margin-left: auto;
 }
+
 /*searchbar*/
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .enter_email_text {
@@ -301,7 +304,25 @@ tbody tr:hover {
   padding: 11px 10px;
   border-radius: 40px;
 }
-
+.subscribe_bt_2 p {
+  width:100%;
+  float: left;
+  font-size: 18px;
+  color: #fdfdfd;
+  text-align: center;
+  border-radius: 40px;
+  display: grid;
+}
+.create_box {
+  width: 90%;
+  display: grid;
+  background-color: #1A5840;
+  height: auto;
+  border-radius: 40px;
+  padding: 0px 0px 0px 0px;
+  grid-column: 2/4;
+  grid-row: 3;
+}
 input {
   display: block;
   outline: none;
@@ -352,9 +373,8 @@ img {
 .header {
   width: 100%;
   padding: 30px 30px;
-  position: absolute;
-  z-index: 999;
-  border-top: #090102 solid 11px;
+  position: initial;
+  z-index:998;
   background-color: #E0DFD9;
 }
 
@@ -542,7 +562,6 @@ img {
 .navigation.navbar-dark .navbar-nav .nav-link:focus,
 .navigation.navbar-dark .navbar-nav .nav-link:hover {
   color: #1A5840;
-  font-weight: 800;
 
 }
 
@@ -553,4 +572,187 @@ img {
   color: #1A5840;
   font-weight: 800;
 
+}
+
+/*popup*/
+
+
+.signup-container {
+  display: grid;
+  grid-template-areas: "left right";
+  max-width: 900px;
+}
+
+.left-container {
+  background: #1A5840;
+  overflow: hidden;
+  padding: 40px 0 0 0;
+  position: relative;
+  text-align: center;
+  width: 300px;
+}
+.left-container h1 {
+  color: rgba(0, 0, 0, 0.8);
+  display: inline-block;
+  font-size: 24px;
+}
+.left-container h1 i {
+  background: #f7b1ab;
+  border-radius: 50%;
+  color: #807182;
+  font-size: 24px;
+  margin-right: 5px;
+  padding: 10px;
+  transform: rotate(-45deg);
+}
+.left-container .puppy {
+  bottom: -5px;
+  position: absolute;
+  text-align: center;
+}
+.left-container .puppy:before {
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: 0.4;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.left-container img {
+  filter: drop-shadow(5px 5px 5px #000000);
+  width: 70%;
+}
+
+.left-container .logo img {
+  filter: sepia(100%);
+  width: 70%;
+}
+
+.right-container {
+  background: #E0DFD9;
+  display: grid;
+  grid-template-areas: "." ".";
+  width: 500px;
+}
+.right-container h1:nth-of-type(1) {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 28px;
+  font-weight: 600;
+}
+.right-container .set {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.right-container input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  height: 38px;
+  line-height: 38px;
+  padding-left: 5px;
+}
+.right-container input,
+.right-container label {
+  color: rgba(0, 0, 0, 0.8);
+}
+.right-container header {
+  padding: 40px;
+}
+.right-container label,
+.right-container input,
+.right-container .pets-photo {
+  width: 176px;
+}
+.right-container .pets-photo {
+  align-items: center;
+  display: grid;
+  grid-template-areas: ". .";
+}
+.right-container .pets-photo button {
+  border: none;
+  border-radius: 50%;
+  height: 38px;
+  margin-right: 10px;
+  outline: none;
+  width: 38px;
+}
+.right-container .pets-photo button i {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 16px;
+}
+.right-container .pets-weight .radio-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.right-container footer {
+  align-items: center;
+  background: #fff;
+  display: grid;
+  padding: 5px 40px;
+}
+.right-container footer button {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 38px;
+  line-height: 38px;
+  width: 100px;
+  border-radius: 19px;
+}
+.right-container footer #back {
+  background: #fff;
+  transition: 0.2s all ease-in-out;
+}
+.right-container footer #back:hover {
+  background: #D5AB90;
+  color: white;
+}
+.right-container footer #next {
+  background: #1A5840;
+  border: 1px solid transparent;
+  color: #fff;
+}
+.right-container footer #next:hover {
+  background: #D5AB90;
+}
+
+.pets-name label,
+.pets-breed label,
+.pets-birthday label,
+.pets-gender label,
+.pets-spayed-neutered label,
+.pets-weight label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.radio-container {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.radio-container label {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transition: 0.2s all ease-in-out;
+  width: 80px;
+}
+
+.radio-container input[type=radio] {
+  display: none;
+}
+
+.radio-container input[type=radio]:checked + label {
+  background: #f7b1ab;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
