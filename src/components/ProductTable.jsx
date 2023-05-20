@@ -4,7 +4,7 @@ export const ProductTable = ({productsList}) => {
             <table>
                 <thead>
                 <tr className="table100-head">
-                    <th scope="col">Product Code</th>
+                    <th scope="col">Code</th>
                     <th scope="col">Name</th>
                     <th scope="col">Unit Value</th>
                     <th scope="col">Quantity</th>

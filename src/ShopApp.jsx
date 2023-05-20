@@ -37,16 +37,17 @@ export const ShopApp = () => {
         <>
             <form onSubmit={listProductByCode}>
                 <div>
-                    <label htmlFor="search" className="labelSearchByCode">Search by code: </label>
                     <div className="wrapper">
                         <div className="mail_box">
                             <input className="enter_email_text" type="text" name="searchProductByCode" id="searchProductByCode" placeholder="Product code..." value={searchProductByCode} onChange={(event) =>  {setSearchProductByCode(event.target.value)}} />
                             <button className="subscribe_bt_1" type="submit"><p>Search</p></button>
                         </div>
+                        <div className="create_box">
+                        <button className="subscribe_bt_2" onClick={() => setStateModal(true)}><p>Create product</p></button>
+                        </div>
                     </div>
                 </div>
                 <br></br>
-                <button className="subscribe_bt_1" onClick={() => setStateModal(true)}><p>Create product</p></button>
             </form>
             <div className="limiter">
                 <div className="container-table100">
