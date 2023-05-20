@@ -25,15 +25,11 @@ export const ShopApp = () => {
     const listProductByCode = async (event) => {
         event.preventDefault();
         console.log('Search product by code:', searchProductByCode);
-        if (searchProductByCode.length === 1) {
-            const product = await getProductByCode(searchProductByCode);
-            if (product) {
-                setProducts([product]);
-            } else {
-                setProducts([]);
-            }
+        const product = await getProductByCode(searchProductByCode);
+        if (product) {
+            setProducts([product]);
         } else {
-            loadProducts();
+            setProducts([]);
         }
     };
 
