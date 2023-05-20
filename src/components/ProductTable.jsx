@@ -1,9 +1,9 @@
 export const ProductTable = ({productsList}) => {
     return (
         <>
-            <table className="table table-striped">
-                <thead className="table-info">
-                <tr>
+            <table>
+                <thead>
+                <tr className="table100-head">
                     <th scope="col">Product Code</th>
                     <th scope="col">Name</th>
                     <th scope="col">Unit Value</th>
