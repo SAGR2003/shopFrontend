@@ -79,7 +79,7 @@ iframe {
 }
 
 table {
-  border-spacing: 1;
+
   border-collapse: collapse;
   background: #fff;
   border-radius: 10px;
@@ -329,6 +329,15 @@ input {
   border: none!important;
   overflow: auto;
   resize: vertical;
+}
+
+
+input:invalid{
+  background:
+          url("../public/images/warning.png") no-repeat 97% center white;
+  outline: 2px solid transparent;
+  background-size: 20px;
+
 }
 
 textarea {
@@ -756,3 +765,4 @@ img {
   background: #f7b1ab;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+/*forms*/
