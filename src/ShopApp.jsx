@@ -29,7 +29,7 @@ export const ShopApp = () => {
         if (product) {
             setProducts([product]);
         } else {
-            setProducts([]);
+            loadProducts();
         }
     };
 
