@@ -1,4 +1,4 @@
-export const ProductTable = ({productsList}) => {
+export const ProductTable = ({productsList, handleEdit }) => {
     return (
         <>
             <table>
@@ -9,6 +9,7 @@ export const ProductTable = ({productsList}) => {
                     <th scope="col">Unit Value</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Date Created</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>{
@@ -18,6 +19,9 @@ export const ProductTable = ({productsList}) => {
                         <td>{product.unitValue}</td>
                         <td>{product.stock}</td>
                         <td>{product.dateCreated}</td>
+                        <td>
+                            <button onClick={() => handleEdit(product)}>Add stock</button>
+                        </td>
                     </tr>)
                 }
                 </tbody>

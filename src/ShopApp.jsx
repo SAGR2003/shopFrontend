@@ -3,11 +3,17 @@ import { ProductTable } from "./components/ProductTable";
 import {getProducts} from "./requests/getProducts";
 import {getProductByCode} from "./requests/getProductByCode";
 import CreateProductModal from "./components/CreateProductModal";
+import EditProductModal from "./components/EditProductModal";
 
 export const ShopApp = () => {
     const [products, setProducts] = useState([]);
     const [searchProductByCode, setSearchProductByCode] = useState("");
     const [stateModal, setStateModal] = useState(false);
+    const [stateEditModal, setStateEditModal] = useState(false);
+    const [editingProduct, setEditingProduct] = useState(null);
+    const [editingCode, setEditingCode] = useState("");
+    const [editingName, setEditingName] = useState("");
+
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
     const [unitValue, setUnitValue] = useState("");
@@ -33,6 +39,13 @@ export const ShopApp = () => {
         }
     };
 
+    const handleEditProduct = (product) => {
+        setEditingProduct(product);
+        setEditingCode(product.code);
+        setEditingName(product.name);
+        setStateEditModal(true);
+    };
+
     return (
         <>
             <form onSubmit={listProductByCode}>
@@ -53,7 +66,7 @@ export const ShopApp = () => {
                 <div className="container-table100">
                     <div className="wrap-table100">
                         <div className="table100">
-                            <ProductTable productsList={products}/>
+                            <ProductTable productsList={products} handleEdit={handleEditProduct}/>
                         </div>
                     </div>
                 </div>
@@ -69,6 +82,17 @@ export const ShopApp = () => {
                 setName={setName}
                 setUnitValue={setUnitValue}
                 setStock={setStock}
+            />
+
+            <EditProductModal
+                stateModal={stateEditModal}
+                setStateModal={setStateEditModal}
+                editingProduct={editingProduct}
+                code={editingCode}
+                name={editingName}
+                stock={stock}
+                setStock={setStock}
+                loadProducts={loadProducts}
             />
         </>
     )
