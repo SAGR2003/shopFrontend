@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import {postProduct} from "../requests/postProduct";
 
@@ -15,7 +15,16 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
         }
         postProduct(product);
         setStateModal(false);
-    }
+    };
+
+    useEffect(() => {
+        if (stateModal) {
+            setCode("");
+            setName("");
+            setUnitValue("");
+            setStock("");
+        }
+    }, [stateModal, setCode, setName, setUnitValue, setStock]);
 
     return (
         <>
@@ -71,8 +80,8 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
                                                        onChange={(event) => setUnitValue(event.target.value)}/>
                                             </div>
                                             <div className='pets-name'>
-                                                <label htmlFor='pets-name'>Stock</label>
-                                                <input placeholder="Stock del producto"
+                                                <label htmlFor='pets-name'>Existencias</label>
+                                                <input placeholder="Existencias producto"
                                                        type="number"
                                                        id="stock"
                                                        name="stock" required={true} min="1" max="999999999" step="1"
@@ -84,8 +93,8 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
                                     </header>
                                     <footer>
                                         <div className='set'>
-                                            <CloseButton id='back' onClick={() => setStateModal(false)}>Back</CloseButton>
-                                            <SubmitButton type="submit" id='next'>Create</SubmitButton>
+                                            <CloseButton id='back' onClick={() => setStateModal(false)}>Volver</CloseButton>
+                                            <SubmitButton type="submit" id='next'>Crear</SubmitButton>
                                         </div>
                                     </footer>
                                 </div>
