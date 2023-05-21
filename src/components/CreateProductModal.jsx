@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {postProduct} from "../requests/postProduct";
 
 const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, stock, setCode, setName, setUnitValue, setStock}) => {
+
     const addProduct = (event) => {
         event.preventDefault();
 
@@ -21,7 +22,7 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
             {stateModal &&
                 <Overlay>
                     <ModalContainer>
-                        <form onSubmit={addProduct}>
+                        <form onSubmit={addProduct} id="formulario">
                             <div className='signup-container'>
                                 <div className='left-container'>
                                     <div className='logo'>
@@ -41,10 +42,11 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
                                             <div className='pets-name'>
                                                 <label htmlFor='pets-name'>Código</label>
                                                 <input placeholder="Código del producto"
-                                                       type="text"
+                                                       type="number"
                                                        id="code"
-                                                       name="code"
+                                                       name="code" min="1" max="999999999" step="1"
                                                        value={code}
+                                                       pattern="[0-9]" required={true} maxLength={9}
                                                        onChange={(event) => setCode(event.target.value)}/>
                                             </div>
                                             <div className='pets-name'>
@@ -54,15 +56,16 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
                                                        name="name"
                                                        value={name}
                                                        placeholder="Nombre del producto"
+                                                       required={true} minLength={3}
                                                        onChange={(event) => setName(event.target.value)}/>
                                             </div>
                                         </div>
                                         <div className='set'>
                                             <div className='pets-breed'>
                                                 <label htmlFor='pets-breed'>Valor unitario</label>
-                                                <input type="text"
+                                                <input type="number"
                                                        id="unitValue"
-                                                       name="unitValue"
+                                                       name="unitValue" required={true} min="1" max="999999999" step="1"
                                                        value={unitValue}
                                                        placeholder="Producto valor unitario"
                                                        onChange={(event) => setUnitValue(event.target.value)}/>
@@ -70,9 +73,9 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
                                             <div className='pets-name'>
                                                 <label htmlFor='pets-name'>Stock</label>
                                                 <input placeholder="Stock del producto"
-                                                       type="text"
+                                                       type="number"
                                                        id="stock"
-                                                       name="stock"
+                                                       name="stock" required={true} min="1" max="999999999" step="1"
                                                        value={stock}
                                                        onChange={(event) => setStock(event.target.value)}
                                                 />
