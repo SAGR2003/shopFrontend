@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import {putProductStock} from "../requests/putProductStock";
 
@@ -18,7 +18,13 @@ const EditProductModal = ({
         await putProductStock(editingProduct.code, stock);
         setStateModal(false);
         loadProducts();
-    }
+    };
+
+    useEffect(() => {
+        if (stateModal) {
+            setStock(""); // Reset the stock state when the modal is opened
+        }
+    }, [stateModal, setStock]);
 
 
     return (
@@ -26,27 +32,64 @@ const EditProductModal = ({
             {stateModal && editingProduct && (
                 <Overlay>
                     <ModalContainer>
-                        <header>
-                            <h3>Add Stock</h3>
-                        </header>
-                        <CloseButton onClick={() => setStateModal(false)}>X</CloseButton>
                         <form onSubmit={handleUpdateStock}>
-                            <label htmlFor="code">Product Code:</label>
-                            <input type="text" id="code" name="code" value={code} disabled/>
+                            <div className='signup-container'>
+                                <div className='left-container'>
+                                    <div className='logo'>
+                                        <h1>
+                                            <a href="index.html"><img alt="logoPrendyD" src="images/InicioR.png"/></a>
+                                        </h1>
+                                    </div>
+                                    <div className='puppy'>
+                                        <img
+                                            src='images/puppy2.png' alt='prendyPuppy'/>
+                                    </div>
+                                </div>
+                                <div className='right-container'>
+                                    <header>
+                                        <h1>Agrega existencias de cada producto.</h1>
+                                        <div className='set'>
+                                            <div className='pets-name'>
+                                                <label htmlFor='pets-name'>Código</label>
+                                                <input type="number"
+                                                       id="code"
+                                                       name="code"
+                                                       value={code}
+                                                       disabled/>
+                                            </div>
 
-                            <label htmlFor="name">Product Name:</label>
-                            <input type="text" id="name" name="name" value={name} disabled/>
-
-                            <label htmlFor="stock">New Stock:</label>
-                            <input
-                                type="number"
-                                id="stock"
-                                name="stock"
-                                value={stock}
-                                onChange={(event) => setStock(event.target.value)}
-                            />
-
-                            <button type="submit">Save</button>
+                                            <div className='pets-name'>
+                                                <label htmlFor='pets-name'>Nombre</label>
+                                                <input type="text"
+                                                       id="name"
+                                                       name="name"
+                                                       value={name}
+                                                       disabled/>
+                                            </div>
+                                        </div>
+                                        <div className='set'>
+                                            <div className='pets-name'>
+                                                <div className='Arrow'>
+                                                    <label htmlFor='pets-name'>Existencias</label>
+                                                    <input placeholder="Existencias del producto"
+                                                           type="number"
+                                                           id="stock1"
+                                                           name="stock" required={true} min="1" max="999999999" step="1"
+                                                           value={stock}
+                                                           onChange={(event) => setStock(event.target.value)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <footer>
+                                        <div className='set'>
+                                            <CloseButton id='back' onClick={() => setStateModal(false)}>Volver</CloseButton>
+                                            <button type="submit" id='next'>Guardar</button>
+                                        </div>
+                                    </footer>
+                                </div>
+                            </div>
                         </form>
                     </ModalContainer>
                 </Overlay>
@@ -62,8 +105,8 @@ const Overlay = styled.div`
   height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  Left: 0;
+  background: rgba(0, 0, 0, .5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,13 +115,14 @@ const Overlay = styled.div`
 const ModalContainer = styled.div`
   position: absolute;
   border-radius: 5px;
-  z-index: 999;
+  z-index:999;
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+;
 
   h3 {
     font-weight: 500;
     font-size: 16px;
-    color: #1a5840;
+    color: #1A5840;
   }
 `;
 
@@ -89,12 +133,12 @@ const CloseButton = styled.button`
   height: 30px;
   border: none;
   cursor: pointer;
-  transition: 0.3s ease all;
+  transition: .3s ease all;
   border-radius: 5px;
-  color: #1a5840;
+  color: #1A5840;
   background: transparent;
 
   &:hover {
-    background: #e8e8e8;
+    background: #E8E8E8;
   }
 `;

@@ -5,6 +5,7 @@ import {getProductByCode} from "./requests/getProductByCode";
 import CreateProductModal from "./components/CreateProductModal";
 import EditProductModal from "./components/EditProductModal";
 
+
 export const ShopApp = () => {
     const [products, setProducts] = useState([]);
     const [searchProductByCode, setSearchProductByCode] = useState("");
@@ -52,11 +53,11 @@ export const ShopApp = () => {
                 <div>
                     <div className="wrapper">
                         <div className="mail_box">
-                            <input className="enter_email_text" type="text" name="searchProductByCode" id="searchProductByCode" placeholder="Product code..." value={searchProductByCode} onChange={(event) =>  {setSearchProductByCode(event.target.value)}} />
-                            <button className="subscribe_bt_1" type="submit"><p>Search</p></button>
+                            <input className="enter_email_text" type="text" name="searchProductByCode" id="searchProductByCode" placeholder="Código del producto..." value={searchProductByCode} onChange={(event) =>  {setSearchProductByCode(event.target.value)}} />
+                            <button className="subscribe_bt_1" type="submit"><p>Buscar</p></button>
                         </div>
                         <div className="create_box">
-                        <button className="subscribe_bt_2" onClick={() => setStateModal(true)}><p>Create product</p></button>
+                        <button className="subscribe_bt_2" onClick={() => setStateModal(true)}><p>Crear producto</p></button>
                         </div>
                     </div>
                 </div>
