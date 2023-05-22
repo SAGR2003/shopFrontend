@@ -9,6 +9,7 @@ import {createBrowserRouter, Route, RouterProvider, Routes} from "react-router-d
 import {Product} from "./components/products/Product";
 import Sale from "./components/sales/Sale";
 import {MakeSale} from "./components/sales/MakeSale";
+import CartModal from "./components/sales/CartModal";
 
 library.add(fab, faPenToSquare)
 
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         path: "/make-sale",
         element: <MakeSale/>,
         errorElement: <h1>404</h1>,
-    }
+    },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

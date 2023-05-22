@@ -19,11 +19,9 @@ export const SaleProducts = ({productsList, setStateModalCart, handleCartItem, c
                         <td>{product.unitValue}</td>
                         <td>{product.stock}</td>
                         <td>
-                            {!cart.find((item) => item.code === product.code) && (
-                                <button id="agregar" onClick={() => handleCartItem(product)}>
-                                    Agregar
-                                </button>
-                            )}
+                            <button id="agregar" onClick={() => handleCartItem(product)}>
+                                Agregar
+                            </button>
                         </td>
                     </tr>)
                 }

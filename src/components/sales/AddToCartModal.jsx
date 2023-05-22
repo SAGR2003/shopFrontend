@@ -1,8 +1,14 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const AddToCartModal = ({ stateModalCart, setStateModalCart, handleAddToCart, code, name, stock }) => {
     const [quantity, setQuantity] = useState(1);
+
+    useEffect(() => {
+        if (stateModalCart) {
+            setQuantity(1);
+        }
+    }, [stateModalCart]);
 
     const handleSubmit = (event) => {
         event.preventDefault();

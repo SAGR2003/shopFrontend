@@ -5,7 +5,9 @@ import Header from "../Header";
 import {SaleProducts} from "./SaleProducts";
 import {ClimbingBoxLoader} from "react-spinners";
 import AddToCartModal from "./AddToCartModal";
-import {Cart} from "./Cart";
+import CartModal from "./CartModal";
+import {getProductByCode} from "../../requests/products/getProductByCode";
+import {Link} from "react-router-dom";
 
 export const MakeSale = () => {
     const [products, setProducts] = useState([]);
@@ -17,6 +19,8 @@ export const MakeSale = () => {
     const [stock, setStock] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [cart, setCart] = useState([]);
+    const [searchProductByCode, setSearchProductByCode] = useState("");
+    const [stateModal, setStateModal] = useState(false);
 
     useEffect(() => {
         loadAllProducts();
@@ -43,14 +47,66 @@ export const MakeSale = () => {
     }
 
     const addToCart = (product) => {
-        const newProduct = {...product, quantity: quantity};
-        setSelectedProducts((prevProducts) => [...prevProducts, newProduct]);
+        const existingProduct = selectedProducts.find((item) => item.code === product.code);
+
+        if (existingProduct) {
+            const updatedQuantity = parseInt(existingProduct.quantity) + parseInt(product.quantity);
+            const updatedProduct = {
+                ...existingProduct,
+                quantity: Math.min(updatedQuantity, product.stock),
+            };
+
+            setSelectedProducts((prevProducts) =>
+                prevProducts.map((item) => (item.code === product.code ? updatedProduct : item))
+            );
+        } else {
+            setSelectedProducts((prevProducts) => [...prevProducts, product]);
+        }
     };
 
+    const handleQuantityChange = (code, quantity) => {
+        setSelectedProducts((prevProducts) =>
+            prevProducts.map((item) => (item.code === code ? {...item, quantity} : item))
+        );
+    };
+
+    const handleRemoveItem = (code) => {
+        setSelectedProducts((prevProducts) => prevProducts.filter((item) => item.code !== code));
+    };
+
+    const listProductByCode = async (event) => {
+        event.preventDefault();
+        console.log('Search product by code:', searchProductByCode);
+        const product = await getProductByCode(searchProductByCode);
+        if (product) {
+            setProducts([product]);
+        } else {
+            loadAllProducts();
+        }
+    };
 
     return (
         <>
             <Header/>
+            <form onSubmit={listProductByCode}>
+                <div>
+                    <div className="wrapper">
+                        <div className="mail_box">
+                            <input className="enter_email_text" type="text" name="searchProductByCode"
+                                   id="searchProductByCode" placeholder="Código del producto..."
+                                   value={searchProductByCode} onChange={(event) => {
+                                setSearchProductByCode(event.target.value)
+                            }}/>
+                            <button className="subscribe_bt_1" type="submit"><p>Buscar</p></button>
+                        </div>
+                        <div className="create_box">
+                            <button onClick={()=> setStateModal(true)} className="subscribe_bt_2"><p>Ver Carrito</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+            </form>
             <div className="limiter">
                 <div className="container-table100">
                     <div className="wrap-table100">
@@ -63,7 +119,8 @@ export const MakeSale = () => {
                                 <SaleProducts
                                     productsList={products}
                                     setStateModalCart={setStateModalCart}
-                                    handleCartItem={handleCartItem} cart={cart}/>
+                                    handleCartItem={handleCartItem}
+                                    cart={selectedProducts}/>
                             )}
                         </div>
                     </div>
@@ -77,8 +134,13 @@ export const MakeSale = () => {
                 name={name}
                 stock={stock}
             />
-
-            <Cart cartItems={selectedProducts}/>
+            <CartModal
+                stateModal={stateModal}
+                setStateModal={setStateModal}
+                cartItems={selectedProducts}
+                handleQuantityChange={handleQuantityChange}
+                handleRemoveItem={handleRemoveItem}
+            />
         </>
     );
 }

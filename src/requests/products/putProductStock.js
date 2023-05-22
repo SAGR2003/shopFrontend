@@ -9,5 +9,4 @@ export const putProductStock = async (code, stock) => {
         })
     });
     console.log(resp);
-
 }

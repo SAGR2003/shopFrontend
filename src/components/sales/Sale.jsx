@@ -46,8 +46,6 @@ const Sale = () => {
         }
     };
 
-
-
     return (
         <>
             <Header/>
