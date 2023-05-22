@@ -5,6 +5,11 @@ export const ShopApp = () => {
     return (
         <>
             <Header/>
+            <div className='banner1'>
+                <img src="/images/banner.png" alt="Logo"/>
+                <img src="/images/banner2.png" alt="Logo"/>
+            </div>
         </>
+
     );
 }
