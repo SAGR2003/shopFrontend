@@ -1,3 +1,5 @@
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
 export const SaleProducts = ({productsList, setStateModalCart, handleCartItem, cart}) => {
 
     return (
@@ -20,7 +22,7 @@ export const SaleProducts = ({productsList, setStateModalCart, handleCartItem, c
                         <td>{product.stock}</td>
                         <td>
                             <button id="agregar" onClick={() => handleCartItem(product)}>
-                                Agregar
+                                <FontAwesomeIcon icon={faCartPlus} size="lg" style={{color: "#1A5840",}} />
                             </button>
                         </td>
                     </tr>)

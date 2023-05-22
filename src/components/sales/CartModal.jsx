@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import {postSale} from "../../requests/sales/postSale";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faXmark} from "@fortawesome/free-solid-svg-icons";
 
 const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, handleRemoveItem}) => {
     const [document, setDocument] = useState("");
@@ -34,7 +36,7 @@ const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, 
                         <ModalContainer>
                             <form onSubmit={makeSale}>
                                 <div className='signup-container'>
-                                    <div className='left-container'>
+                                    <div className='left-container2'>
                                         <div className='logo'>
                                             <h1>
                                                 <a href="index.html"><img alt="logoPrendyD"
@@ -43,16 +45,15 @@ const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, 
                                         </div>
                                         <div className='puppy'>
                                             <img
-                                                src='images/puppy2.png' alt='prendyPuppy'/>
+                                                src='images/puppy4.png' alt='prendyPuppy'/>
                                         </div>
                                     </div>
-                                    <div className='right-container'>
+                                    <div className='right-container2'>
                                         <header>
                                             <h1>Carrito de Compras</h1>
                                             <div className='set'>
                                                 <div className='pets-name'>
-                                                    <div className='Arrow'>
-                                                        <label htmlFor='pets-name'>Documento del cliente</label>
+                                                        <label htmlFor='pets-name' style={{ display:'contents'}}>Documento del cliente</label>
                                                         <input placeholder="123456789"
                                                                type="number"
                                                                id="document"
@@ -60,26 +61,41 @@ const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, 
                                                                value={document}
                                                                onChange={(event) => setDocument(event.target.value)}
                                                         />
-                                                    </div>
                                                 </div>
                                             </div>
                                             <ul>
                                                 {cartItems.map((item) => (
                                                     <li key={item.code}>
-                                                        <div>
-                                                            <span>Código: {item.code}</span>
-                                                            <span>Nombre: {item.name}</span>
-                                                            <span>Cantidad:</span>
-                                                            <input
+                                                        <div className='set'>
+                                                            <div className='pets-name'>
+                                                                <span>Código: </span>
+                                                                <input
+                                                                    type="text"
+                                                                    value={item.code}
+                                                                    disabled/>
+
+                                                            </div>
+                                                            <div className='pets-name'>
+                                                                <span>Nombre:</span>
+                                                                <input
+                                                                    type="text"
+                                                                    value={item.name}
+                                                                    disabled/>
+                                                            </div>
+                                                            <div className='pets-name'>
+                                                                <span>Cantidad:</span>
+                                                                <input
                                                                 type="number"
                                                                 value={item.quantity}
                                                                 min="0"
                                                                 max={item.stock}
-                                                                onChange={(event) => handleQuantityUpdate(event, item.code)}
-                                                            />
-                                                            <button
-                                                                onClick={() => handleRemoveButtonClick(item.code)}>Eliminar del carrito
-                                                            </button>
+                                                                onChange={(event) => handleQuantityUpdate(event, item.code)}/>
+                                                            </div>
+                                                            <div className='pets-name' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                                <button
+                                                                    onClick={() => handleRemoveButtonClick(item.code)}>
+                                                                    <FontAwesomeIcon icon={faXmark} size="lg" style={{color: "#1A5840",}} />                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </li>
                                                 ))}
