@@ -1,38 +1,23 @@
-import React, {useEffect} from "react";
 import styled from "styled-components";
-import {putProductStock} from "../../requests/products/putProductStock";
+import React, {useState} from "react";
 
-const EditProductModal = ({
-                              stateModal,
-                              setStateModal,
-                              editingProduct,
-                              code,
-                              name,
-                              stock,
-                              setStock,
-                              loadProducts,
-                          }) => {
+const AddToCartModal = ({ stateModalCart, setStateModalCart, handleAddToCart, code, name, stock }) => {
+    const [quantity, setQuantity] = useState(1);
 
-    const handleUpdateStock = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        await putProductStock(editingProduct.code, stock);
-        setStateModal(false);
-        loadProducts();
+        const product = { code, name, stock, quantity };
+        handleAddToCart(product);
+        setStateModalCart(false);
     };
-
-    useEffect(() => {
-        if (stateModal) {
-            setStock("");
-        }
-    }, [stateModal, setStock]);
 
 
     return (
         <>
-            {stateModal && editingProduct && (
+            {stateModalCart && (
                 <Overlay>
                     <ModalContainer>
-                        <form onSubmit={handleUpdateStock}>
+                        <form onSubmit={handleSubmit}>
                             <div className='signup-container'>
                                 <div className='left-container'>
                                     <div className='logo'>
@@ -47,7 +32,7 @@ const EditProductModal = ({
                                 </div>
                                 <div className='right-container'>
                                     <header>
-                                        <h1>Agrega existencias de cada producto.</h1>
+                                        <h1>Desea agregar el producto al carrito?</h1>
                                         <div className='set'>
                                             <div className='pets-name'>
                                                 <label htmlFor='pets-name'>Código</label>
@@ -70,13 +55,13 @@ const EditProductModal = ({
                                         <div className='set'>
                                             <div className='pets-name'>
                                                 <div className='Arrow'>
-                                                    <label htmlFor='pets-name'>Existencias</label>
+                                                    <label htmlFor='pets-name'>Cantidad</label>
                                                     <input placeholder="Existencias del producto"
                                                            type="number"
                                                            id="stock1"
-                                                           name="stock" required={true} min="1" max="999999999" step="1"
-                                                           value={stock}
-                                                           onChange={(event) => setStock(event.target.value)}
+                                                           name="stock" required={true} min="1" max={stock} step="1"
+                                                           value={quantity}
+                                                           onChange={(event) => setQuantity(event.target.value)}
                                                     />
                                                 </div>
                                             </div>
@@ -84,8 +69,8 @@ const EditProductModal = ({
                                     </header>
                                     <footer>
                                         <div className='set'>
-                                            <CloseButton id='back' onClick={() => setStateModal(false)}>Volver</CloseButton>
-                                            <button type="submit" id='next'>Guardar</button>
+                                            <CloseButton id='back' onClick={() => setStateModalCart(false)}>Cancelar</CloseButton>
+                                            <button type="submit" id='next' >Agregar</button>
                                         </div>
                                     </footer>
                                 </div>
@@ -96,9 +81,9 @@ const EditProductModal = ({
             )}
         </>
     );
-};
+}
 
-export default EditProductModal;
+export default AddToCartModal;
 
 const Overlay = styled.div`
   width: 100vw;
@@ -115,9 +100,8 @@ const Overlay = styled.div`
 const ModalContainer = styled.div`
   position: absolute;
   border-radius: 5px;
-  z-index:999;
-  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
-;
+  z-index: 999;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;;
 
   h3 {
     font-weight: 500;
@@ -141,4 +125,16 @@ const CloseButton = styled.button`
   &:hover {
     background: #E8E8E8;
   }
+`;
+
+const SubmitButton = styled.button`
+  top: 200px;
+  right: 40px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  transition: .3s ease all;
+  color: #1A5840;
+  background: transparent;
 `;

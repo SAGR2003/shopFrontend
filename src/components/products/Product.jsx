@@ -121,5 +121,5 @@ export const Product = () => {
                 loadProducts={loadProducts}
             />
         </>
-    )
+    );
 }

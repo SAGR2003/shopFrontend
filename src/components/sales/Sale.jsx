@@ -4,6 +4,8 @@ import {SaleTable} from "./SaleTable";
 import {getAllSales} from "../../requests/sales/getAllSales";
 import {getSalesByDocument} from "../../requests/sales/getSalesByDocument";
 import {ClimbingBoxLoader} from "react-spinners";
+import {MakeSale} from "./MakeSale";
+import {Link} from "react-router-dom";
 
 const Sale = () => {
     const [sales, setSales] = useState([]);
@@ -60,7 +62,7 @@ const Sale = () => {
                             <button className="subscribe_bt_1" type="submit"><p>Buscar</p></button>
                         </div>
                         <div className="create_box">
-                            <button className="subscribe_bt_2"><p>Hacer una venta</p></button>
+                            <button className="subscribe_bt_2"><Link to={"/make-sale"}><p>Hacer una venta</p></Link></button>
                         </div>
                     </div>
                 </div>

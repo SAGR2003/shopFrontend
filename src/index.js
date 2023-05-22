@@ -8,6 +8,7 @@ import {ShopApp} from "./ShopApp";
 import {createBrowserRouter, Route, RouterProvider, Routes} from "react-router-dom";
 import {Product} from "./components/products/Product";
 import Sale from "./components/sales/Sale";
+import {MakeSale} from "./components/sales/MakeSale";
 
 library.add(fab, faPenToSquare)
 
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
         element: <Sale/>,
         errorElement: <h1>404</h1>,
     },
+    {
+        path: "/make-sale",
+        element: <MakeSale/>,
+        errorElement: <h1>404</h1>,
+    }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
