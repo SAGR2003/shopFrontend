@@ -33,7 +33,7 @@ const AddToCartModal = ({ stateModalCart, setStateModalCart, handleAddToCart, co
                                     </div>
                                     <div className='puppy'>
                                         <img
-                                            src='images/puppy2.png' alt='prendyPuppy'/>
+                                            src='images/puppy3.png' alt='prendyPuppy'/>
                                     </div>
                                 </div>
                                 <div className='right-container'>

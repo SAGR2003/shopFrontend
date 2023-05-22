@@ -89,8 +89,10 @@ export const MakeSale = () => {
         <>
             <Header/>
             <form onSubmit={listProductByCode}>
+
                 <div>
                     <div className="wrapper">
+                        <div className='carrito'>Agrega items a tu carrito de compras</div>
                         <div className="mail_box">
                             <input className="enter_email_text" type="text" name="searchProductByCode"
                                    id="searchProductByCode" placeholder="Código del producto..."
