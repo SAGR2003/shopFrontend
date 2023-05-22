@@ -1,4 +1,4 @@
-export const SaleTable = ({salesList}) => {
+export const SaleTable = ({ salesList }) => {
     return (
         <>
             <table>
@@ -10,16 +10,17 @@ export const SaleTable = ({salesList}) => {
                     <th scope="col">Fecha</th>
                 </tr>
                 </thead>
-                <tbody>{
-                    salesList.map((sale) => <tr key={sale.id}>
+                <tbody>
+                {salesList.map((sale) => (
+                    <tr key={sale.id}>
                         <td>{sale.id}</td>
                         <td>{sale.documentClient}</td>
                         <td>{sale.totalAmount}</td>
                         <td>{sale.dateCreated}</td>
-                    </tr>)
-                }
+                    </tr>
+                ))}
                 </tbody>
             </table>
         </>
-    )
-}
+    );
+};

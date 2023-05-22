@@ -2,10 +2,12 @@ import React, {useEffect, useState} from "react";
 import Header from "../Header";
 import {SaleTable} from "./SaleTable";
 import {getAllSales} from "../../requests/sales/getAllSales";
+import {getSalesByDocument} from "../../requests/sales/getSalesByDocument";
 
 const Sale = () => {
     const [sales, setSales] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchSaleByDocument, setSearchSaleByDocument] = useState("");
 
     useEffect(() => {
         loadSales();
@@ -27,13 +29,21 @@ const Sale = () => {
     const listSaleByDocument = async (event) => {
         event.preventDefault();
         console.log('Search sale by document:', searchSaleByDocument);
-        const sale = await getSaleByDocument(searchSaleByDocument);
-        if (sale) {
-            setSales([sale]);
+        const response = await getSalesByDocument(searchSaleByDocument);
+        if (response.length > 0) {
+            const sales = response.map(item => ({
+                id: item.id,
+                documentClient: item.documentClient,
+                totalAmount: item.totalAmount,
+                dateCreated: item.dateCreated,
+            }));
+            setSales(sales);
         } else {
             loadSales();
         }
-    }
+    };
+
+
 
     return (
         <>
@@ -43,13 +53,12 @@ const Sale = () => {
                     <div className="mail_box">
                         <input className="enter_email_text" type="text" name="searchSaleByDocument"
                                id="searchSaleByDocument" placeholder="Documento del cliente..."
-                               value={searchSaleByDocument} onChange={(event) => {setsearchSaleByDocument(event.target.value)
+                               value={searchSaleByDocument} onChange={(event) => {setSearchSaleByDocument(event.target.value)
                         }}/>
                         <button className="subscribe_bt_1" type="submit"><p>Buscar</p></button>
                     </div>
                     <div className="create_box">
-                        <button className="subscribe_bt_2" onClick={() => setStateModal(true)}><p>Crear producto</p>
-                        </button>
+                        <button className="subscribe_bt_2"><p>Hacer una venta</p></button>
                     </div>
                 </div>
             </form>
