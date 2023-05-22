@@ -6,6 +6,7 @@ import {getProductByCode} from "../../requests/products/getProductByCode";
 import CreateProductModal from "./CreateProductModal";
 import EditProductModal from "./EditProductModal";
 import Header from "../Header";
+import {ClimbingBoxLoader} from "react-spinners";
 
 export const Product = () => {
     const [products, setProducts] = useState([]);
@@ -84,7 +85,11 @@ export const Product = () => {
                 <div className="container-table100">
                     <div className="wrap-table100">
                         <div className="table100">
-                            {isLoading ? (<p>Cargando productos...</p>) : (
+                            {isLoading ? (
+                                <div className='loading'>
+                                <ClimbingBoxLoader color="#1A5840" size={50}/>
+                                </div>
+                            ) : (
                                 <ProductTable productsList={products} handleEdit={handleEditProduct}/>)}
                         </div>
                     </div>

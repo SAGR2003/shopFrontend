@@ -3,6 +3,7 @@ import Header from "../Header";
 import {SaleTable} from "./SaleTable";
 import {getAllSales} from "../../requests/sales/getAllSales";
 import {getSalesByDocument} from "../../requests/sales/getSalesByDocument";
+import {ClimbingBoxLoader} from "react-spinners";
 
 const Sale = () => {
     const [sales, setSales] = useState([]);
@@ -49,24 +50,37 @@ const Sale = () => {
         <>
             <Header/>
             <form onSubmit={listSaleByDocument}>
-                <div className="wrapper">
-                    <div className="mail_box">
-                        <input className="enter_email_text" type="text" name="searchSaleByDocument"
-                               id="searchSaleByDocument" placeholder="Documento del cliente..."
-                               value={searchSaleByDocument} onChange={(event) => {setSearchSaleByDocument(event.target.value)
-                        }}/>
-                        <button className="subscribe_bt_1" type="submit"><p>Buscar</p></button>
-                    </div>
-                    <div className="create_box">
-                        <button className="subscribe_bt_2"><p>Hacer una venta</p></button>
+                <div>
+                    <div className="wrapper">
+                        <div className="mail_box">
+                            <input className="enter_email_text" type="text" name="searchSaleByDocument"
+                                   id="searchSaleByDocument" placeholder="Documento del cliente..."
+                                   value={searchSaleByDocument} onChange={(event) => {setSearchSaleByDocument(event.target.value)
+                            }}/>
+                            <button className="subscribe_bt_1" type="submit"><p>Buscar</p></button>
+                        </div>
+                        <div className="create_box">
+                            <button className="subscribe_bt_2"><p>Hacer una venta</p></button>
+                        </div>
                     </div>
                 </div>
+                <br></br>
             </form>
-            {isLoading ? (
-                <div>Cargando...</div>
-            ) : (
-                <SaleTable salesList={sales}/>
-            )}
+            <div className="limiter">
+                <div className="container-table100">
+                    <div className="wrap-table100">
+                        <div className="table100">
+                            {isLoading ? (
+                                <div className='loading'>
+                                    <ClimbingBoxLoader color="#1A5840" size={50}/>
+                                </div>
+                            ) : (
+                                <SaleTable salesList={sales}/>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };

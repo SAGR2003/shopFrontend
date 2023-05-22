@@ -793,4 +793,16 @@ input[type=number]::-webkit-outer-spin-button {
   background: #f7b1ab;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-/*forms*/
+/*loader*/
+.loading{
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 65vh;
+}
+/*banner-home*/
+.banner1 img{
+  width: 100%;
+}
