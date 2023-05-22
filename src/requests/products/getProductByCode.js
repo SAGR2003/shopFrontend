@@ -4,14 +4,13 @@ export const getProductByCode = async (code) => {
     const data = await resp.json();
 
     if (data && data.code) {
-        const product = {
+        return {
             code: data.code,
             name: data.name,
             unitValue: data.unitValue,
             stock: data.stock,
             dateCreated: data.dateCreated,
         };
-        return product;
     } else {
         return null;
     }

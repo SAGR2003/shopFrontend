@@ -1,37 +1,38 @@
 import React, {useEffect} from "react";
 import styled from "styled-components";
-import {postProduct} from "../requests/postProduct";
+import {putProductStock} from "../../requests/products/putProductStock";
 
-const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, stock, setCode, setName, setUnitValue, setStock}) => {
+const EditProductModal = ({
+                              stateModal,
+                              setStateModal,
+                              editingProduct,
+                              code,
+                              name,
+                              stock,
+                              setStock,
+                              loadProducts,
+                          }) => {
 
-    const addProduct = (event) => {
+    const handleUpdateStock = async (event) => {
         event.preventDefault();
-
-        let product = {
-            code: code,
-            name: name,
-            unitValue: unitValue,
-            stock: stock,
-        }
-        postProduct(product);
+        await putProductStock(editingProduct.code, stock);
         setStateModal(false);
+        loadProducts();
     };
 
     useEffect(() => {
         if (stateModal) {
-            setCode("");
-            setName("");
-            setUnitValue("");
-            setStock("");
+            setStock(""); // Reset the stock state when the modal is opened
         }
-    }, [stateModal, setCode, setName, setUnitValue, setStock]);
+    }, [stateModal, setStock]);
+
 
     return (
         <>
-            {stateModal &&
+            {stateModal && editingProduct && (
                 <Overlay>
                     <ModalContainer>
-                        <form onSubmit={addProduct} id="formulario">
+                        <form onSubmit={handleUpdateStock}>
                             <div className='signup-container'>
                                 <div className='left-container'>
                                     <div className='logo'>
@@ -41,60 +42,50 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
                                     </div>
                                     <div className='puppy'>
                                         <img
-                                            src='images/puppy.png' alt='prendyPuppy'/>
+                                            src='images/puppy2.png' alt='prendyPuppy'/>
                                     </div>
                                 </div>
                                 <div className='right-container'>
                                     <header>
-                                        <h1>Crea un producto que destaque en todos los momentos.</h1>
+                                        <h1>Agrega existencias de cada producto.</h1>
                                         <div className='set'>
                                             <div className='pets-name'>
                                                 <label htmlFor='pets-name'>Código</label>
-                                                <input placeholder="Código del producto"
-                                                       type="number"
+                                                <input type="number"
                                                        id="code"
-                                                       name="code" min="1" max="999999999" step="1"
+                                                       name="code"
                                                        value={code}
-                                                       pattern="[0-9]" required={true} maxLength={9}
-                                                       onChange={(event) => setCode(event.target.value)}/>
+                                                       disabled/>
                                             </div>
+
                                             <div className='pets-name'>
                                                 <label htmlFor='pets-name'>Nombre</label>
                                                 <input type="text"
                                                        id="name"
                                                        name="name"
                                                        value={name}
-                                                       placeholder="Nombre del producto"
-                                                       required={true} minLength={3}
-                                                       onChange={(event) => setName(event.target.value)}/>
+                                                       disabled/>
                                             </div>
                                         </div>
                                         <div className='set'>
-                                            <div className='pets-breed'>
-                                                <label htmlFor='pets-breed'>Valor unitario</label>
-                                                <input type="number"
-                                                       id="unitValue"
-                                                       name="unitValue" required={true} min="1" max="999999999" step="1"
-                                                       value={unitValue}
-                                                       placeholder="Producto valor unitario"
-                                                       onChange={(event) => setUnitValue(event.target.value)}/>
-                                            </div>
                                             <div className='pets-name'>
-                                                <label htmlFor='pets-name'>Existencias</label>
-                                                <input placeholder="Existencias producto"
-                                                       type="number"
-                                                       id="stock"
-                                                       name="stock" required={true} min="1" max="999999999" step="1"
-                                                       value={stock}
-                                                       onChange={(event) => setStock(event.target.value)}
-                                                />
+                                                <div className='Arrow'>
+                                                    <label htmlFor='pets-name'>Existencias</label>
+                                                    <input placeholder="Existencias del producto"
+                                                           type="number"
+                                                           id="stock1"
+                                                           name="stock" required={true} min="1" max="999999999" step="1"
+                                                           value={stock}
+                                                           onChange={(event) => setStock(event.target.value)}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                     </header>
                                     <footer>
                                         <div className='set'>
                                             <CloseButton id='back' onClick={() => setStateModal(false)}>Volver</CloseButton>
-                                            <SubmitButton type="submit" id='next'>Crear</SubmitButton>
+                                            <button type="submit" id='next'>Guardar</button>
                                         </div>
                                     </footer>
                                 </div>
@@ -102,14 +93,12 @@ const CreateProductModal = ({stateModal, setStateModal, code, name, unitValue, s
                         </form>
                     </ModalContainer>
                 </Overlay>
-            }
+            )}
         </>
     );
-}
+};
 
-export default CreateProductModal;
-
-
+export default EditProductModal;
 
 const Overlay = styled.div`
   width: 100vw;
@@ -152,16 +141,4 @@ const CloseButton = styled.button`
   &:hover {
     background: #E8E8E8;
   }
-`;
-
-const SubmitButton = styled.button`
-  top: 200px;
-  right: 40px;
-  width: 30px;
-  height: 30px;
-  border: none;
-  cursor: pointer;
-  transition: .3s ease all;
-  color: #1A5840;
-  background: transparent;
 `;

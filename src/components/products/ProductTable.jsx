@@ -1,8 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-
-export const ProductTable = ({productsList, handleEdit }) => {
-
+export const ProductTable = ({productsList, handleEdit}) => {
     return (
         <>
             <table>
