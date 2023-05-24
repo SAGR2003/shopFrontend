@@ -7,6 +7,7 @@ export const getAllSales = async () => {
         id: sale.id,
         documentClient: sale.documentClient,
         totalAmount: sale.totalAmount,
-        dateCreated: sale.dateCreated
+        dateCreated: sale.dateCreated,
+        address: sale.address,
     }));
 }

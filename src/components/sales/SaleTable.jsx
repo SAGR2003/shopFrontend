@@ -1,4 +1,4 @@
-export const SaleTable = ({ salesList }) => {
+export const SaleTable = ({salesList}) => {
     return (
         <>
             <table>
@@ -8,6 +8,7 @@ export const SaleTable = ({ salesList }) => {
                     <th scope="col">Documento de cliente</th>
                     <th scope="col">Valor total</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col">Dirección de entrega</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -17,6 +18,7 @@ export const SaleTable = ({ salesList }) => {
                         <td>{sale.documentClient}</td>
                         <td>{sale.totalAmount}</td>
                         <td>{sale.dateCreated}</td>
+                        <td>{sale.address ? sale.address : "Presencial"}</td>
                     </tr>
                 ))}
                 </tbody>
