@@ -6,6 +6,7 @@ import {getSalesByDocument} from "../../requests/sales/getSalesByDocument";
 import {ClimbingBoxLoader} from "react-spinners";
 import {MakeSale} from "./MakeSale";
 import {Link} from "react-router-dom";
+import {undoSale} from "../../requests/sales/undoSale";
 
 const Sale = () => {
     const [sales, setSales] = useState([]);
@@ -26,6 +27,15 @@ const Sale = () => {
             console.error("Error al cargar las ventas:", error);
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const undoLastSale = async () => {
+        try {
+            await undoSale();
+            await loadSales();
+        } catch (error) {
+            console.error("Error:", error);
         }
     };
 
@@ -62,6 +72,7 @@ const Sale = () => {
                         <div className="create_box">
                             <button className="subscribe_bt_2"><Link to={"/make-sale"}><p>Hacer una venta</p></Link></button>
                         </div>
+                        <button onClick={undoLastSale} className="subscribe_bt_2">Deshacer venta</button>
                     </div>
                 </div>
                 <br></br>
