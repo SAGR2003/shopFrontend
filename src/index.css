@@ -314,6 +314,7 @@ tbody tr:hover {
   display: grid;
 }
 
+
 .create_box {
   width: 90%;
   display: grid;
@@ -324,6 +325,9 @@ tbody tr:hover {
   grid-column: 2/4;
   grid-row: 3;
 }
+
+
+
 input {
   display: block;
   outline: none;
@@ -952,4 +956,58 @@ input[type=number]::-webkit-outer-spin-button {
   grid-column: 2/6;
   padding-bottom: 30px;
   text-align: center;
+}
+
+/*sweetalarm colors*/
+.swal2-popup .swal2-styled.swal2-confirm {
+  background-color: #1A5840 !important;
+}
+.swal2-popup .swal2-styled:focus {
+  background-color: #1A5840 !important;
+}
+
+.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover {
+  background-color: #1A5840 !important;
+}
+
+
+/*sale*/
+.create_box_sale1 {
+  width: 90%;
+  display: grid;
+  background-color: #1A5840;
+  height: auto;
+  border-radius: 40px;
+  padding: 0px 0px 0px 0px;
+  grid-column: 3/5;
+  grid-row: 3;
+}
+
+.create_box_sale2 {
+  width: 90%;
+  display: grid;
+  height: auto;
+  border-radius: 40px;
+  background-color: #1A5840;
+  padding: 0px 0px 0px 0px;
+  grid-column: 2/3;
+  grid-row: 3;
+}
+
+.wrapper_sale {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.mail_box_sale {
+  width: 90%;
+  display: flex;
+  background-color: #ffffff;
+  height: auto;
+  border-radius: 40px;
+  padding: 0px 5px 0px 20px;
+  grid-column: 5 / 8;
+  grid-row: 3;
+  margin-right: 0;
+  margin-left: auto;
 }

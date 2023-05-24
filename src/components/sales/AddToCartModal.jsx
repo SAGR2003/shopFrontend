@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, {useEffect, useState} from "react";
+import Swal from "sweetalert2";
 
 const AddToCartModal = ({ stateModalCart, setStateModalCart, handleAddToCart, code, name, stock }) => {
     const [quantity, setQuantity] = useState(1);
@@ -10,13 +11,29 @@ const AddToCartModal = ({ stateModalCart, setStateModalCart, handleAddToCart, co
         }
     }, [stateModalCart]);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const product = { code, name, stock, quantity };
-        handleAddToCart(product);
-        setStateModalCart(false);
-    };
 
+        try {
+            const responseData = await handleAddToCart(product);
+            console.log(responseData);
+            setStateModalCart(false);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Producto agregado al carrito',
+                text: 'El producto ha sido agregado al carrito.',
+            });
+        } catch (error) {
+            console.error('Error al agregar el producto al carrito:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error al agregar el producto al carrito.',
+            });
+        }
+    };
 
     return (
         <>

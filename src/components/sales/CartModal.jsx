@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {postSale} from "../../requests/sales/postSale";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, handleRemoveItem}) => {
     const [document, setDocument] = useState("");
@@ -17,6 +17,7 @@ const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, 
         handleRemoveItem(code);
     };
 
+
     const makeSale = async (event) => {
         event.preventDefault();
 
@@ -24,10 +25,22 @@ const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, 
             const responseData = await postSale(document, cartItems);
             console.log(responseData);
             setStateModal(false);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Venta realizada',
+                text: 'La venta se ha realizado correctamente.',
+            });
         } catch (error) {
-            throw error;
+            console.error('Error al realizar la venta:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error al realizar la venta.',
+            });
         }
-    }
+    };
+
 
     return (
         <>

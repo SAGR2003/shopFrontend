@@ -10,7 +10,7 @@ export const postSale = async (documentClient, cartItems) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(saleData)
+            body: JSON.stringify(saleData),
         });
 
         if (response.ok) {
@@ -24,5 +24,6 @@ export const postSale = async (documentClient, cartItems) => {
         console.error("Error al realizar la venta:", error);
         throw error;
     }
+
 };
 
