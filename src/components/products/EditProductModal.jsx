@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import styled from "styled-components";
 import {putProductStock} from "../../requests/products/putProductStock";
+import Swal from "sweetalert2";
 
 const EditProductModal = ({
                               stateModal,
@@ -15,10 +16,28 @@ const EditProductModal = ({
 
     const handleUpdateStock = async (event) => {
         event.preventDefault();
-        await putProductStock(editingProduct.code, stock);
-        setStateModal(false);
-        loadProducts();
+        try {
+            const responseData = await putProductStock(editingProduct.code, stock);
+            console.log(responseData);
+            setStateModal(false);
+            loadProducts();
+            Swal.fire({
+                icon: 'success',
+                title: 'Stock actualizado',
+                text: 'El stock ha sido actualizado correctamente.',
+            });
+        } catch (error) {
+            console.error('Error al actualizar el stock:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error al actualizar el stock.',
+            });
+        }
     };
+
+
+
 
     useEffect(() => {
         if (stateModal) {

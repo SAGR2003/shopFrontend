@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import styled from "styled-components";
 import {postProduct} from "../../requests/products/postProduct";
+import Swal from "sweetalert2";
 
 const CreateProductModal = ({
                                 stateModal,
@@ -16,7 +17,7 @@ const CreateProductModal = ({
                                 loadProducts,
                             }) => {
 
-    const addProduct = (event) => {
+    const addProduct = async (event) => {
         event.preventDefault();
 
         let product = {
@@ -25,10 +26,28 @@ const CreateProductModal = ({
             unitValue: unitValue,
             stock: stock,
         }
-        postProduct(product);
-        setStateModal(false);
-        loadProducts();
+
+        try {
+            const responseData = await postProduct(product);
+            console.log(responseData);
+            setStateModal(false);
+            loadProducts();
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Producto creado',
+                text: 'El producto se ha creado correctamente.',
+            });
+        } catch (error) {
+            console.error('Error al crear el producto:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error al crear el producto.',
+            });
+        }
     };
+
 
     useEffect(() => {
         if (stateModal) {

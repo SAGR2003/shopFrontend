@@ -7,7 +7,8 @@ import {ClimbingBoxLoader} from "react-spinners";
 import {MakeSale} from "./MakeSale";
 import {Link} from "react-router-dom";
 import {undoSale} from "../../requests/sales/undoSale";
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faRotateLeft} from "@fortawesome/free-solid-svg-icons";
 const Sale = () => {
     const [sales, setSales] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -61,18 +62,23 @@ const Sale = () => {
             <Header/>
             <form onSubmit={listSaleByDocument}>
                 <div>
-                    <div className="wrapper">
-                        <div className="mail_box">
+                    <div className="wrapper_sale">
+                        <div className="mail_box_sale">
                             <input className="enter_email_text" type="text" name="searchSaleByDocument"
                                    id="searchSaleByDocument" placeholder="Documento del cliente..."
                                    value={searchSaleByDocument} onChange={(event) => {setSearchSaleByDocument(event.target.value)
                             }}/>
                             <button className="subscribe_bt_1" type="submit"><p>Buscar</p></button>
                         </div>
-                        <div className="create_box">
+                        <div className="create_box_sale1">
                             <button className="subscribe_bt_2"><Link to={"/make-sale"}><p>Hacer una venta</p></Link></button>
                         </div>
-                        <button onClick={undoLastSale} className="subscribe_bt_2">Deshacer venta</button>
+                        <div className="create_box_sale2" style={{ backgroundColor:'#D7A97B' }}>
+                            <button onClick={undoLastSale} className="subscribe_bt_2" style={{ display: 'flex', alignItems: 'center',color:'white' }}>
+                                <FontAwesomeIcon icon={faRotateLeft} size="lg"style={{marginLeft:'10px'}}/>
+                                <p style={{ fontSize: 20, marginRight:'20px', color:'white' }}>Deshacer</p>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <br></br>

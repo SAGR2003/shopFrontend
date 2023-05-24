@@ -7,7 +7,6 @@ import {ClimbingBoxLoader} from "react-spinners";
 import AddToCartModal from "./AddToCartModal";
 import CartModal from "./CartModal";
 import {getProductByCode} from "../../requests/products/getProductByCode";
-import {Link} from "react-router-dom";
 
 export const MakeSale = () => {
     const [products, setProducts] = useState([]);
