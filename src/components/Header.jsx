@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
 import React from "react";
 
-export default function Header(){
-    return(
+export default function Header() {
+    return (
         <header>
             <div className="header">
                 <div className="container-fluid">
@@ -12,9 +12,7 @@ export default function Header(){
                                 <div className="center-desk">
                                     <div className="logo">
                                         <li>
-                                            <Link to={"/"}>
-                                                <img src="images/inicio.png" alt="Logo"/>
-                                            </Link>
+                                            <img src="/images/Inicio.png" alt="Logo"/>
                                         </li>
                                     </div>
                                 </div>
