@@ -17,7 +17,6 @@ const CartModal = ({stateModal, setStateModal, cartItems, handleQuantityChange, 
         handleRemoveItem(code);
     };
 
-
     const makeSale = async (event) => {
         event.preventDefault();
 
@@ -176,16 +175,4 @@ const CloseButton = styled.button`
   &:hover {
     background: #E8E8E8;
   }
-`;
-
-const SubmitButton = styled.button`
-  top: 200px;
-  right: 40px;
-  width: 30px;
-  height: 30px;
-  border: none;
-  cursor: pointer;
-  transition: .3s ease all;
-  color: #1A5840;
-  background: transparent;
 `;

@@ -5,11 +5,10 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {fab} from '@fortawesome/free-brands-svg-icons'
 import {faPenToSquare} from '@fortawesome/free-solid-svg-icons'
 import {ShopApp} from "./ShopApp";
-import {createBrowserRouter, Route, RouterProvider, Routes} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Product} from "./components/products/Product";
 import Sale from "./components/sales/Sale";
 import {MakeSale} from "./components/sales/MakeSale";
-import CartModal from "./components/sales/CartModal";
 
 library.add(fab, faPenToSquare)
 

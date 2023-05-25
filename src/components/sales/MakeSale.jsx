@@ -16,8 +16,6 @@ export const MakeSale = () => {
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
     const [stock, setStock] = useState("");
-    const [quantity, setQuantity] = useState(1);
-    const [cart, setCart] = useState([]);
     const [searchProductByCode, setSearchProductByCode] = useState("");
     const [stateModal, setStateModal] = useState(false);
 

@@ -4,7 +4,6 @@ import {SaleTable} from "./SaleTable";
 import {getAllSales} from "../../requests/sales/getAllSales";
 import {getSalesByDocument} from "../../requests/sales/getSalesByDocument";
 import {ClimbingBoxLoader} from "react-spinners";
-import {MakeSale} from "./MakeSale";
 import {Link} from "react-router-dom";
 import {undoSale} from "../../requests/sales/undoSale";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

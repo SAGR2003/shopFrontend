@@ -57,6 +57,7 @@ const CreateProductModal = ({
             setStock("");
         }
         loadProducts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stateModal, setCode, setName, setUnitValue, setStock]);
 
     return (
